@@ -25,8 +25,14 @@ class Item(WorldObject):
                 self.weight = weight
                 WorldObject.__init__(self, name, description)
 
-class Room(WorldObject):
+class Location(WorldObject):
         pass
+
+# The passage is a doorway or path which leads from its location to the specified destination.
+class Passage(WorldObject):
+        def __init__(self, destination):
+                self.destination = destination
+                WorldObject.__init__(self, name, description)
 
 class Entity(WorldObject):
         def __init__(self, name, description, health):
@@ -117,10 +123,10 @@ def parseInput(text, player):
 
 root = EmptyNode()
 
-hill = Room("hill", "a grassy hill")
+hill = Location("hill", "a grassy hill")
 coin = Item("coin", "a gold coin", 0)
 cow = Entity("cow", "a brown cow", 100)
-house = Room("house", "a red house")
+house = Location("house", "a red house")
 player = Player("player", "main character", 100, hill)
 
 hill.addChild(cow)

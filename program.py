@@ -14,37 +14,21 @@ class EmptyNode(Node):
         pass
 
 class WorldObject(Node):
-        def __init__(self, name, description):
+        def __init__(self, name, description, weight=None, destination=None, health=None):
                 self.name = name
                 self.description = description
+                self.weight = weight                    # for items
+                self.destination = destination          # for passages
+                self.health = health                    # for entities
+
                 # here an ancestor's __init__ function is called directly, without using the super() method, for simplicity.
                 Node.__init__(self)
 
-class Item(WorldObject):
-        def __init__(self, name, description, weight):
-                self.weight = weight
-                WorldObject.__init__(self, name, description)
-
-class Location(WorldObject):
-        pass
-
-# The passage is a doorway or path which leads from its location to the specified destination.
-class Passage(WorldObject):
-        def __init__(self, name, description, destination):
-                self.destination = destination
-                WorldObject.__init__(self, name, description)
-
-class Entity(WorldObject):
-        def __init__(self, name, description, health):
-                self.health = health
-                WorldObject.__init__(self, name, description)
-
-
-class Player(Entity):
-        def __init__(self, name, description, health, location):
+class Player(WorldObject):
+        def __init__(self, name, description, location, weight=None, destination=None, health=100):
+                self.inventory = []
                 self.location = location
-                Entity.__init__(self, name, description, health)
-
+                WorldObject.__init__(self, name, description, weight, destination, health)
 
 
 # return the object specified by the name, in the node. Return None if it is not found.
@@ -114,12 +98,12 @@ def parseInput(text, player):
 
 root = EmptyNode()
 
-hill = Location("hill", "a grassy hill")
-coin = Item("coin", "a gold coin", 0)
-cow = Entity("cow", "a brown cow", 100)
-house = Location("house", "a red house")
-player = Player("player", "main character", 100, hill)
-door = Passage("door", "a wooden door", hill)
+hill = WorldObject("hill", "a grassy hill")
+coin = WorldObject("coin", "a gold coin", 0)
+cow = WorldObject("cow", "a brown cow", 100)
+house = WorldObject("house", "a red house")
+player = Player("player", "main character", hill)
+door = WorldObject("door", "a wooden door", hill)
 
 hill.addChild(cow)
 hill.addChild(house)

@@ -42,7 +42,9 @@ def executeGo(noun, player):
         if obj:
                 # if object has a destination, go there
                 if obj.destination:
+                        player.location.children.remove(player)
                         player.location = obj.destination
+                        obj.destination.addChild(player)
                 else:
                         print("You can't go there.")
 
@@ -114,7 +116,7 @@ stove = Node("stove", "an old, cast-iron stove")
 door = Node("door", "a wooden door", destination=field)
 
 root.addChild(field)
-field.addChildren([cow, tree, house, cave])
+field.addChildren([cow, tree, house, cave, player])
 house.addChildren([bed, stove, door])
 cave.addChild(caveExit)
 

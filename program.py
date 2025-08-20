@@ -114,6 +114,7 @@ cow = WorldObject("cow", "a brown cow")
 tree = WorldObject("tree", "a birch tree")
 cave = WorldObject("cave", "a small cave")
 cave.makeEnterable()
+caveExit = WorldObject("exit", "an exit from the cave", destination=field)
 house = WorldObject("house", "a blue house")
 house.makeEnterable()
 bed = WorldObject("bed", "a ragged bed")
@@ -122,6 +123,7 @@ door = WorldObject("door", "a wooden door", destination=field)
 
 field.addChildren([cow, tree, house, cave])
 house.addChildren([bed, stove, door])
+cave.addChild(caveExit)
 
 # main loop
 running = True

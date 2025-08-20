@@ -61,7 +61,7 @@ def executeGo(noun, player):
 def executeExamine(noun, player):
         obj = getObject(noun, player.location)
         if obj:
-                print(f"There is a {obj.description} here.")
+                print(f"There is {obj.description} here.")
         else:
                 print(f"You don't see {noun} here.")
 

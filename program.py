@@ -21,6 +21,9 @@ class WorldObject(Node):
                 # here an ancestor's __init__ function is called directly, without using the super() method, for simplicity.
                 Node.__init__(self)
 
+        def makeEnterable(self):
+                self.destination = self
+
 class Player(WorldObject):
         def __init__(self, name, description, location, weight=None, destination=None, health=100):
                 self.inventory = []
@@ -41,8 +44,12 @@ def executeGo(noun, player):
 
         obj = getObject(noun, player.location)
         if obj:
-                # TODO: don't move to a location that's not a place. Also move through a passage correctly.
-                player.location = obj
+                # if object has a destination, go there
+                if obj.destination:
+                        player.location = obj.destination
+                else:
+                        print("You can't go there.")
+
         else:
                 print(f"That place doesn't exist here.")
 
@@ -99,8 +106,9 @@ hill = WorldObject("hill", "a grassy hill")
 coin = WorldObject("coin", "a gold coin", 0)
 cow = WorldObject("cow", "a brown cow", 100)
 house = WorldObject("house", "a red house")
+house.makeEnterable()
 player = Player("player", "main character", hill)
-door = WorldObject("door", "a wooden door", hill)
+door = WorldObject("door", "a wooden door", destination=hill)
 
 hill.addChild(cow)
 hill.addChild(house)

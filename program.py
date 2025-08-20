@@ -58,39 +58,25 @@ def getObject(name, node):
 
 def executeGo(noun, player):
 
-        # TODO: use getObject() here
-        children = player.location.children
-        found = False
-        destination = None
-        for child in children:
-                if child.name == noun:
-                        found = True
-                        destination = child
-        if not found:
+        obj = getObject(noun, player.location)
+        if obj:
+                # TODO: don't move to a location that's not a place
+                player.location = obj
+        else:
                 print(f"That place doesn't exist here.")
 
-        # TODO: don't move to a location that's not a place
-        player.location = destination
 
 def executeExamine(noun, player):
-        # TODO: use getObject()
-        children = player.location.children
-        found = False
-        for child in children:
-                if child.name == noun:
-                        found = True
-                        print(f"You see {child.description}.")
-
-        if not found:
+        obj = getObject(noun, player.location)
+        if obj:
+                print(f"There is a {obj.description} here.")
+        else:
                 print(f"You don't see {noun} here.")
 
-        pass
 
 def executeLook(noun, player):
-        #print(f"execute {noun}")
         match noun:
                 case "around":
-                        # TODO: use getObject()
                         output = player.location.description
                         print(f"You are in {output}.")
                         children = player.location.children

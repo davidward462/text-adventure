@@ -7,6 +7,10 @@ class Node():
         def addChild(self, childNode):
                 self.children.append(childNode)
 
+        def addChildren(self, childrenList):
+                for child in childrenList:
+                        self.addChild(child)
+
 class EmptyNode(Node):
         pass
 
@@ -99,28 +103,23 @@ def parseInput(text, player):
                         print(f"I don't know how to do '{verb}'")
         return True
 
+# Player <- (name="name", description="descr", location=loc)
+# Location <- (name="name", description="descr")
 
 root = EmptyNode()
-
-hill = WorldObject("hill", "a grassy hill")
-coin = WorldObject("coin", "a gold coin", 0)
-cow = WorldObject("cow", "a brown cow", 100)
-house = WorldObject("house", "a red house")
+field = WorldObject("field", "a grassy field")
+player = Player("player", "a hero", field)
+cow = WorldObject("cow", "a brown cow")
+tree = WorldObject("tree", "a birch tree")
+cave = WorldObject("cave", "a small cave")
+house = WorldObject("house", "a blue house")
 house.makeEnterable()
-player = Player("player", "main character", hill)
-door = WorldObject("door", "a wooden door", destination=hill)
+bed = WorldObject("bed", "a ragged bed")
+stove = WorldObject("stove", "an old, cast-iron stove")
+door = WorldObject("door", "a wooden door", destination=field)
 
-hill.addChild(cow)
-hill.addChild(house)
-
-# should the player actually be in the world tree?
-hill.addChild(player)
-house.addChild(coin)
-house.addChild(door)
-
-
-root.addChild(hill)
-
+field.addChildren([cow, tree, house, cave])
+house.addChildren([bed, stove, door])
 
 # main loop
 running = True

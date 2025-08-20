@@ -105,6 +105,7 @@ def parseInput(text, player):
 
 # Player <- (name="name", description="descr", location=loc)
 # Location <- (name="name", description="descr")
+# Passage <- (name="name", description="descr", destination=dest)
 
 root = EmptyNode()
 field = WorldObject("field", "a grassy field")

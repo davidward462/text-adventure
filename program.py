@@ -1,8 +1,13 @@
 
 # Base node class
 class Node():
-        def __init__(self):
+        def __init__(self, name, description, weight=None, destination=None, health=None):
                 self.children = []
+                self.name = name
+                self.description = description
+                self.weight = weight                    # for items
+                self.destination = destination          # for passages
+                self.health = health                    # for entities
 
         def addChild(self, childNode):
                 self.children.append(childNode)
@@ -11,28 +16,15 @@ class Node():
                 for child in childrenList:
                         self.addChild(child)
 
-class EmptyNode(Node):
-        pass
-
-class WorldObject(Node):
-        def __init__(self, name, description, weight=None, destination=None, health=None):
-                self.name = name
-                self.description = description
-                self.weight = weight                    # for items
-                self.destination = destination          # for passages
-                self.health = health                    # for entities
-
-                # here an ancestor's __init__ function is called directly, without using the super() method, for simplicity.
-                Node.__init__(self)
-
         def makeEnterable(self):
                 self.destination = self
 
-class Player(WorldObject):
+
+class Player(Node):
         def __init__(self, name, description, location, weight=None, destination=None, health=100):
                 self.inventory = []
                 self.location = location
-                WorldObject.__init__(self, name, description, weight, destination, health)
+                Node.__init__(self, name, description, weight, destination, health)
 
 
 # return the object specified by the name, in the node. Return None if it is not found.
@@ -107,20 +99,21 @@ def parseInput(text, player):
 # Location <- (name="name", description="descr")
 # Passage <- (name="name", description="descr", destination=dest)
 
-root = EmptyNode()
-field = WorldObject("field", "a grassy field")
+root = Node("world", "the game world")
+field = Node("field", "a grassy field")
 player = Player("player", "a hero", field)
-cow = WorldObject("cow", "a brown cow")
-tree = WorldObject("tree", "a birch tree")
-cave = WorldObject("cave", "a small cave")
+cow = Node("cow", "a brown cow")
+tree = Node("tree", "a birch tree")
+cave = Node("cave", "a small cave")
 cave.makeEnterable()
-caveExit = WorldObject("exit", "an exit from the cave", destination=field)
-house = WorldObject("house", "a blue house")
+caveExit = Node("exit", "an exit from the cave", destination=field)
+house = Node("house", "a blue house")
 house.makeEnterable()
-bed = WorldObject("bed", "a ragged bed")
-stove = WorldObject("stove", "an old, cast-iron stove")
-door = WorldObject("door", "a wooden door", destination=field)
+bed = Node("bed", "a ragged bed")
+stove = Node("stove", "an old, cast-iron stove")
+door = Node("door", "a wooden door", destination=field)
 
+root.addChild(field)
 field.addChildren([cow, tree, house, cave])
 house.addChildren([bed, stove, door])
 cave.addChild(caveExit)

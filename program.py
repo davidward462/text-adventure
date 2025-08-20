@@ -60,7 +60,7 @@ def executeGo(noun, player):
 
         obj = getObject(noun, player.location)
         if obj:
-                # TODO: don't move to a location that's not a place
+                # TODO: don't move to a location that's not a place. Also move through a passage correctly.
                 player.location = obj
         else:
                 print(f"That place doesn't exist here.")

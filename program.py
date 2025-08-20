@@ -49,7 +49,12 @@ class Player(Entity):
 
 # return the object specified by the name, in the node. Return None if it is not found.
 def getObject(name, node):
-        pass
+        children = node.children
+        obj = None
+        for child in children:
+                if child.name == name:
+                        obj = child
+        return obj
 
 def executeGo(noun, player):
 

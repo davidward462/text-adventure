@@ -30,7 +30,7 @@ class Location(WorldObject):
 
 # The passage is a doorway or path which leads from its location to the specified destination.
 class Passage(WorldObject):
-        def __init__(self, destination):
+        def __init__(self, name, description, destination):
                 self.destination = destination
                 WorldObject.__init__(self, name, description)
 
@@ -133,6 +133,7 @@ coin = Item("coin", "a gold coin", 0)
 cow = Entity("cow", "a brown cow", 100)
 house = Location("house", "a red house")
 player = Player("player", "main character", 100, hill)
+door = Passage("door", "a wooden door", hill)
 
 hill.addChild(cow)
 hill.addChild(house)
@@ -140,6 +141,7 @@ hill.addChild(house)
 # should the player actually be in the world tree?
 hill.addChild(player)
 house.addChild(coin)
+house.addChild(door)
 
 
 root.addChild(hill)

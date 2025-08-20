@@ -7,9 +7,6 @@ class Node():
         def addChild(self, childNode):
                 self.children.append(childNode)
 
-        def getChildren(self):
-                return self.children
-
 class EmptyNode(Node):
         pass
 

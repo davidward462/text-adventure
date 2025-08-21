@@ -1,13 +1,18 @@
 
-# Base node class
+# 'children' is a list of objects that are either representationally inside this node, or can be reached from it, or are a subsection of it.
+# 'tags' is a list of strings that are used to identify the object.
+# 'description' is a more verbose description of the object the player can see.
+# 'weight' relates to how easy an item is to pick up.
+# 'destination' is only for passages, and is the place to where it leads.
+# 'health' is the number of hit points for entities
 class Node():
         def __init__(self, tags, description, weight=None, destination=None, health=None):
                 self.children = []
                 self.tags = tags
                 self.description = description
-                self.weight = weight                    # for items
-                self.destination = destination          # for passages
-                self.health = health                    # for entities
+                self.weight = weight
+                self.destination = destination
+                self.health = health
 
         def addChild(self, childNode):
                 self.children.append(childNode)
@@ -18,7 +23,6 @@ class Node():
 
         def makeEnterable(self):
                 self.destination = self
-
 
 class Player(Node):
         def __init__(self, tags, description, location, weight=None, destination=None, health=100):

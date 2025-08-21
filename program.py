@@ -45,6 +45,7 @@ def executeGo(noun, player):
                         player.location.children.remove(player)
                         player.location = obj.destination
                         obj.destination.addChild(player)
+                        executeLook("around", player)
                 else:
                         print("You can't go there.")
 
@@ -60,14 +61,23 @@ def executeExamine(noun, player):
                 print(f"You don't see {noun} here.")
 
 
+# Given a location, list the objects that are there.
+def listObjectsAtLocation(location):
+        children = location.children
+        namesList = [child.name for child in children]
+        # if not empty
+        if namesList:
+                print(f"Around you, you see:")
+                for child in children:
+                        print(f"{child.description}")
+
+
 def executeLook(noun, player):
         match noun:
                 case "around":
                         output = player.location.description
                         print(f"You are in {output}.")
-                        children = player.location.children
-                        namesList = [child.name for child in children]
-                        print(f"Around you, you see {namesList}")
+                        listObjectsAtLocation(player.location)
                 case _:
                         print(f"You can't do that.")
 
@@ -122,6 +132,7 @@ cave.addChild(caveExit)
 
 # main loop
 running = True
+executeLook("around", player)
 while running:
-        text = input()
+        text = input("-> ")
         running = parseInput(text, player)

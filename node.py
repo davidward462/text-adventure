@@ -1,4 +1,3 @@
-
 # 'children' is a list of objects that are either representationally inside this node, or can be reached from it, or are a subsection of it.
 # 'tags' is a list of strings that are used to identify the object.
 # 'description' is a short description of the object the player can see.

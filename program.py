@@ -134,5 +134,5 @@ cave.addChild(caveExit)
 running = True
 executeLook("around", player)
 while running:
-        text = input("-> ")
+        text = input("\n-> ")
         running = parseInput(text, player)

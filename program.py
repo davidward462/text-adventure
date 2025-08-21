@@ -119,8 +119,7 @@ def parseInput(text, player):
         return True
 
 # main loop
-running = True
-executeLook("around", player)
+running = False
 while running:
         text = input("\n-> ")
         running = parseInput(text, player)

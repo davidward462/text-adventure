@@ -1,9 +1,9 @@
 
 # Base node class
 class Node():
-        def __init__(self, name, description, weight=None, destination=None, health=None):
+        def __init__(self, tags, description, weight=None, destination=None, health=None):
                 self.children = []
-                self.name = name
+                self.tags = tags
                 self.description = description
                 self.weight = weight                    # for items
                 self.destination = destination          # for passages
@@ -21,18 +21,18 @@ class Node():
 
 
 class Player(Node):
-        def __init__(self, name, description, location, weight=None, destination=None, health=100):
+        def __init__(self, tags, description, location, weight=None, destination=None, health=100):
                 self.inventory = []
                 self.location = location
-                Node.__init__(self, name, description, weight, destination, health)
+                Node.__init__(self, tags, description, weight, destination, health)
 
 
-# return the object specified by the name, in the node. Return None if it is not found.
-def getObject(name, node):
+# return the object specified by the tags, in the node. Return None if it is not found.
+def getObject(tags, node):
         children = node.children
         obj = None
         for child in children:
-                if child.name == name:
+                if child.tags == tags:
                         obj = child
         return obj
 
@@ -64,9 +64,9 @@ def executeExamine(noun, player):
 # Given a location, list the objects that are there.
 def listObjectsAtLocation(location):
         children = location.children
-        namesList = [child.name for child in children]
+        tagsList = [child.tags for child in children]
         # if not empty
-        if namesList:
+        if tagsList:
                 print(f"Around you, you see:")
                 for child in children:
                         print(f"{child.description}")
@@ -107,9 +107,9 @@ def parseInput(text, player):
                         print(f"I don't know how to do '{verb}'")
         return True
 
-# Player <- (name="name", description="descr", location=loc)
-# Location <- (name="name", description="descr")
-# Passage <- (name="name", description="descr", destination=dest)
+# Player <- (tags=[...], description="descr", location=loc)
+# Location <- (tags=[...], description="descr")
+# Passage <- (tags=[...], description="descr", destination=dest)
 
 root = Node("world", "the game world")
 field = Node("field", "a grassy field")

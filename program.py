@@ -32,11 +32,13 @@ class Player(Node):
 
 
 # return the object specified by the tags, in the node. Return None if it is not found.
-def getObject(tags, node):
+def getObject(tag, node):
         children = node.children
         obj = None
+        # check each child of the node
         for child in children:
-                if child.tags == tags:
+                # if one of the tags in the list matches
+                if tag in child.tags:
                         obj = child
         return obj
 
@@ -68,9 +70,8 @@ def executeExamine(noun, player):
 # Given a location, list the objects that are there.
 def listObjectsAtLocation(location):
         children = location.children
-        tagsList = [child.tags for child in children]
         # if not empty
-        if tagsList:
+        if children:
                 print(f"Around you, you see:")
                 for child in children:
                         print(f"{child.description}")

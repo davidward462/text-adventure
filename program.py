@@ -109,7 +109,7 @@ def parseInput(text, player):
                         # examine something closely without interacting with it
                         executeExamine(noun, player)
                 case _:
-                        print(f"I don't know how to do '{verb}'")
+                        print(f"You don't know how to do '{verb}'")
         return True
 
 # Player <- (tags=[...], description="descr", location=loc)
@@ -118,15 +118,14 @@ def parseInput(text, player):
 
 root = Node(["world"], "the game world")
 
-
 field = Node(["field"], "a grassy field")
-player = Player(["player"], "a hero", field)
+player = Player(["player", "me", "yourself"], "a hero", field)
 cow = Node(["brown", "cow"], "a brown cow")
 tree = Node(["birch", "tree"], "a birch tree")
-house = Node(["house"], "a blue house")
+house = Node(["house", "north"], "a blue house")
 house.makeEnterable()
 
-cave = Node(["cave"], "a small cave")
+cave = Node(["cave", "east"], "a small cave")
 caveExit = Node(["exit"], "an exit from the cave", destination=field)
 cave.makeEnterable()
 

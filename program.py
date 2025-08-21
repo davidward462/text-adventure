@@ -117,15 +117,19 @@ def parseInput(text, player):
 # Passage <- (tags=[...], description="descr", destination=dest)
 
 root = Node(["world"], "the game world")
+
+
 field = Node(["field"], "a grassy field")
 player = Player(["player"], "a hero", field)
 cow = Node(["brown", "cow"], "a brown cow")
 tree = Node(["birch", "tree"], "a birch tree")
-cave = Node(["cave"], "a small cave")
-cave.makeEnterable()
-caveExit = Node(["exit"], "an exit from the cave", destination=field)
 house = Node(["house"], "a blue house")
 house.makeEnterable()
+
+cave = Node(["cave"], "a small cave")
+caveExit = Node(["exit"], "an exit from the cave", destination=field)
+cave.makeEnterable()
+
 bed = Node(["bed"], "a ragged bed")
 stove = Node(["stove"], "an old, cast-iron stove")
 door = Node(["door"], "a wooden door", destination=field)

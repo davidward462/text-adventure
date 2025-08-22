@@ -72,6 +72,23 @@ def executeLook(noun, player):
                 case _:
                         print(f"You can't do that.")
 
+def executeGet(noun, player):
+        obj = getObject(noun, player.location)
+        if obj:
+                if obj.weight:
+                        if obj.weight < 100:
+                                print(f"You pick up {obj.description}")
+                                player.inventory.append(obj)
+                                player.location.children.remove(obj)
+                else:
+                        print("That's not something you can get.")
+        else:
+                print(f"You don't see {noun} here.")
+
+def inventory(player):
+        for child in player.inventory:
+                print(f"{child.description}")
+
 
 def parseInput(text, player):
         words = text.split()
@@ -94,6 +111,12 @@ def parseInput(text, player):
                 case "examine":
                         # examine something closely without interacting with it
                         executeExamine(noun, player)
+                case "get":
+                        # get a local item and put it in the player's inventory
+                        executeGet(noun, player)
+                case "inventory":
+                        # show the player's inventory
+                        inventory(player)
                 case _:
                         print(f"You don't know how to do '{verb}'")
         return True

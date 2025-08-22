@@ -72,6 +72,18 @@ def executeLook(noun, player):
                 case _:
                         print(f"You can't do that.")
 
+# Get an item from the inventory with a matching tag
+def getFromInventory(tag, player):
+        inventory = player.inventory
+        obj = None
+        # check each item in the inventory
+        for item in inventory:
+                # if one of the tags in the list matches
+                if tag in item.tags:
+                        obj = item
+        return obj
+
+
 def executeGet(noun, player):
         obj = getObject(noun, player.location)
         if obj:
@@ -88,6 +100,16 @@ def executeGet(noun, player):
 def inventory(player):
         for child in player.inventory:
                 print(f"{child.description}")
+
+def executeDrop(tag, player):
+        obj = getFromInventory(tag, player)
+        if obj:
+                # drop
+                player.inventory.remove(obj)
+                player.location.children.append(obj)
+                print(f"You drop {obj.description}")
+        else:
+                print("You aren't carrying that.")
 
 
 def parseInput(text, player):
@@ -114,6 +136,9 @@ def parseInput(text, player):
                 case "get":
                         # get a local item and put it in the player's inventory
                         executeGet(noun, player)
+                case "drop":
+                        # drop an item from the inventory at the current location
+                        executeDrop(noun, player)
                 case "inventory":
                         # show the player's inventory
                         inventory(player)

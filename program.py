@@ -3,6 +3,7 @@ import lib
 
 root = Node(["root"], "")
 house = Node(["house"], "a small wooden house")
+house.makeEnterable()
 player = Player(["player"], "a hero", location=house)
 field = Node(["field"], "a grassy field")
 door = Node(["door"], "a wooden door", destination=field)

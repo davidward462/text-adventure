@@ -6,7 +6,7 @@
 # 'destination' is only for passages, and is the place to where it leads.
 # 'prospect' is the place to which the passage appears to go.
 # 'health' is the number of hit points for entities
-# 'goText' is text the player sees when passing through this passage.
+# 'goText' for a location that you enter directly, describes entering the location. For a passage it describes moving through the passage.
 class Node():
         def __init__(self, tags, description, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None):
                 self.children = []

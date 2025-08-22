@@ -19,6 +19,8 @@ def executeGo(noun, player):
                         player.location.children.remove(player)
                         player.location = obj.destination
                         obj.destination.addChild(player)
+                        # go message
+                        print(f"{obj.goText}")
                         executeLook("around", player)
                 else:
                         print("You can't go there.")

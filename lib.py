@@ -46,13 +46,29 @@ def listObjectsAtLocation(location):
                 for child in children:
                         print(f"{child.description}")
 
+# List the objects at the player's location, and exclude the player.
+def listObjectsAtPlayer(player):
+        children = player.location.children
+
+        # if not empty
+        if children:
+                print(f"Around you, you see:")
+
+                # if the only child is the player, there isn't anything to see.
+                if len(children) == 1 and children[0] == player:
+                        print("Nothing of interest.")
+
+                for child in children:
+                        if child != player:
+                                print(f"{child.description}")
+
 
 def executeLook(noun, player):
         match noun:
                 case "around":
                         output = player.location.description
                         print(f"You are in {output}.")
-                        listObjectsAtLocation(player.location)
+                        listObjectsAtPlayer(player)
                 case _:
                         print(f"You can't do that.")
 

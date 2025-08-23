@@ -15,11 +15,12 @@ flowerField = Node(["flowers", "field"], "a field of flowers")
 flowerField.makeEnterable()
 cobblestoneRoadToFlowers = Node(["road"], "a cobblestone road", destination=flowerField)
 cobblestoneRoadToField = Node(["road"], "a cobblestone road", destination=field)
+copperCoin = Node(["coin", "copper"], "a copper coin")
 
 root.addChildren([field, basement, flowerField])
 field.addChildren([house, cobblestoneRoadToFlowers])
 flowerField.addChildren([cobblestoneRoadToField])
-house.addChildren([player, door, staircaseDown])
+house.addChildren([player, door, staircaseDown, copperCoin])
 basement.addChildren([staircaseUp, oldBook])
 
 

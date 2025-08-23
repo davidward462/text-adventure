@@ -111,6 +111,8 @@ def executeDrop(tag, player):
         else:
                 print("You aren't carrying that.")
 
+def printHelp():
+        print("Commands:\nquit\nlook <noun>\ngo <noun>\nexamine <noun>\nget <noun>\ndrop <noun>\ninventory")
 
 def parseInput(text, player):
         words = text.split()
@@ -142,6 +144,8 @@ def parseInput(text, player):
                 case "inventory":
                         # show the player's inventory
                         inventory(player)
+                case "help":
+                        printHelp()
                 case _:
-                        print(f"You don't know how to do '{verb}'")
+                        print(f"You don't know how to '{verb}'")
         return True

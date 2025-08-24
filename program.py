@@ -13,8 +13,8 @@ staircaseUp = Node(["stairs", "staircase", "up"], "a staircase leading up", dest
 oldBook = Node(["book"], "an old book", weight=1)
 flowerField = Node(["flowers", "field"], "a field of flowers")
 flowerField.makeEnterable()
-cobblestoneRoadToFlowers = Node(["road"], "a cobblestone road", destination=flowerField)
-cobblestoneRoadToField = Node(["road"], "a cobblestone road", destination=field)
+cobblestoneRoadToFlowers = Node(["road"], "a cobblestone road", destination=flowerField, goText="You walk down the road.")
+cobblestoneRoadToField = Node(["road"], "a cobblestone road", destination=field, goText="You walk down the road.")
 copperCoin = Node(["coin", "copper"], "a copper coin")
 
 root.addChildren([field, basement, flowerField])

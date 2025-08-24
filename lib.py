@@ -94,7 +94,7 @@ def getFromInventory(tag, player):
 def executeGet(noun, player):
         obj = getObject(noun, player.location)
         if obj:
-                if obj.weight:
+                if obj.weight != None:
                         if obj.weight < 100:
                                 print(f"You pick up {obj.description}")
                                 player.inventory.append(obj)

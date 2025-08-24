@@ -25,10 +25,8 @@ def executeGo(noun, player):
         if obj:
                 # if object has a destination, go there
                 if obj.destination:
-                        # if passage is unlocked
-                        if obj.closed == False:
-                                # move player to location
-                                go(obj, player)
+                        # move player to location
+                        go(obj, player)
                 # object has no destination
                 else:
                         print("You can't go there.")

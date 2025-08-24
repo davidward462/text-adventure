@@ -10,21 +10,30 @@ def getObject(tag, node):
                         obj = child
         return obj
 
+def go(passage, player):
+        player.location.children.remove(player)
+        player.location = passage.destination
+        passage.destination.addChild(player)
+        print(f"{passage.goText}")
+        executeLook("around", player)
+
+
 def executeGo(noun, player):
 
         obj = getObject(noun, player.location)
+        # if the object is found
         if obj:
                 # if object has a destination, go there
                 if obj.destination:
-                        player.location.children.remove(player)
-                        player.location = obj.destination
-                        obj.destination.addChild(player)
-                        # go message
-                        print(f"{obj.goText}")
-                        executeLook("around", player)
+                        # if passage is unlocked
+                        if obj.closed == False:
+                                # move player to location
+                                go(obj, player)
+                # object has no destination
                 else:
                         print("You can't go there.")
 
+        # object was not found
         else:
                 print(f"That place doesn't exist here.")
 

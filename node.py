@@ -9,8 +9,9 @@
 # 'goText' for a location that you enter directly, describes entering the location. For a passage it describes moving through the passage.
 # 'closed' means a passage is locked, blocked, or otherwise not passable at this time.
 # 'key' is a pointer to the specific object that the player needs in order to open a passage (it does not need to be called a key)
+# 'light' indicates if an object is glowing or is otherwise lit by it's own nature. By default things are not lit.
 class Node():
-        def __init__(self, tags, description, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None):
+        def __init__(self, tags, description, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False):
                 self.children = []
                 self.tags = tags
                 self.description = description
@@ -22,6 +23,7 @@ class Node():
                 self.goText = goText
                 self.closed = closed
                 self.key = key
+                self.light = light
 
         def addChild(self, childNode):
                 self.children.append(childNode)
@@ -40,6 +42,13 @@ class Node():
                         return True
                 else:
                         return False
+
+        def destinatinIsLit(self):
+                # if the object has a destination (it is a passage)
+                if self.destination:
+                        if self.destination.light:
+                                return True
+                return False
 
 
 class Player(Node):

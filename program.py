@@ -3,7 +3,7 @@ import lib
 
 root = Node(["root"], "")
 brassKey = Node(["key"], "a brass key", weight=0)
-house = Node(["house"], "a small wooden house", goText="You enter the house.", key=brassKey)
+house = Node(["house"], "a small wooden house", goText="You enter the house.", key=brassKey, closed=True)
 house.makeEnterable()
 field = Node(["field"], "a grassy field")
 player = Player(["player"], "a hero", location=field)

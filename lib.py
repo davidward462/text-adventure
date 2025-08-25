@@ -54,6 +54,20 @@ def executeExamine(noun, player):
         else:
                 print(f"You don't see {noun} here.")
 
+def isLit(obj):
+        if obj.light or obj.destinatinIsLit():
+                return True
+        else:
+                return False
+
+
+# Returns true if an object can be noticed by the player, false otherwise.
+# Something can be noticed if it is in a lit room, if it emits light, or if the player is actively carrying it.
+def isNoticible(obj, player):
+        if isLit(obj) or obj in player.inventory:
+                return True
+        else:
+                return False
 
 # Given a location, list the objects that are there.
 def listObjectsAtLocation(location):
@@ -78,15 +92,23 @@ def listObjectsAtPlayer(player):
 
                 for child in children:
                         if child != player:
-                                print(f"{child.description}")
+                                if isNoticible(child, player):
+                                        print(f"{child.description}")
 
+def lookAround(noun, player):
+        location = player.location
+        if isLit(location):
+                descr = location.description
+                print(f"You are in {descr}.")
+        else:
+                print("It is very dark.")
+
+        listObjectsAtPlayer(player)
 
 def executeLook(noun, player):
         match noun:
                 case "around":
-                        output = player.location.description
-                        print(f"You are in {output}.")
-                        listObjectsAtPlayer(player)
+                        lookAround(noun, player)
                 case _:
                         print(f"You can't do that.")
 

@@ -30,10 +30,12 @@ class Node():
                 self.light = light
 
         def addChild(self, childNode):
+                childNode.location = self
                 self.children.append(childNode)
 
         def addChildren(self, childrenList):
                 for child in childrenList:
+                        child.location = self
                         self.addChild(child)
 
         def makeEnterable(self):

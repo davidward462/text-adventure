@@ -1,6 +1,8 @@
 # 'children' is a list of objects that are either representationally inside this node, or can be reached from it, or are a subsection of it.
+# 'inventory' is a list of objects contained by this object.
 # 'tags' is a list of strings that are used to identify the object.
 # 'description' is a short description of the object the player can see.
+# 'location' is a pointer to the parent of this object.
 # 'details' is text that the player sees if they examine the object closely.
 # 'weight' relates to how easy an item is to pick up.
 # 'destination' is only for passages, and is the place to where it leads.

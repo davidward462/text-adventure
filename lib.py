@@ -55,7 +55,7 @@ def executeExamine(noun, player):
                 print(f"You don't see {noun} here.")
 
 def isLit(obj):
-        if obj.light or obj.destinatinIsLit():
+        if obj.light or obj.destinatinIsLit() or obj.location.light:
                 return True
         else:
                 return False

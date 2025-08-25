@@ -1,4 +1,4 @@
-from node import Node, Player
+from node import Node
 import lib
 
 root = Node(["root"], "")
@@ -6,7 +6,7 @@ brassKey = Node(["key"], "a brass key", weight=0)
 house = Node(["house"], "a small wooden house", goText="You enter the house.", key=brassKey, closed=True, light=True)
 house.makeEnterable()
 field = Node(["field"], "a grassy field", light=True)
-player = Player(["player"], "a hero", location=field)
+player = Node(["player"], "a hero", location=field, health=100)
 door = Node(["door"], "a wooden door", destination=field, goText="You go through the door.")
 basement = Node(["basement"], "a dusty basement")
 staircaseDown = Node(["stairs", "staircase", "down", "basement"], "a staircase leading down to the basement", destination=basement, goText="You descend the stairs.")

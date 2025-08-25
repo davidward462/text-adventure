@@ -11,10 +11,12 @@
 # 'key' is a pointer to the specific object that the player needs in order to open a passage (it does not need to be called a key)
 # 'light' indicates if an object is glowing or is otherwise lit by it's own nature. By default things are not lit.
 class Node():
-        def __init__(self, tags, description, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False):
+        def __init__(self, tags, description, location=None, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False):
                 self.children = []
+                self.inventory = []
                 self.tags = tags
                 self.description = description
+                self.location = location
                 self.details = details
                 self.weight = weight
                 self.destination = destination
@@ -49,10 +51,3 @@ class Node():
                         if self.destination.light:
                                 return True
                 return False
-
-
-class Player(Node):
-        def __init__(self, tags, description, location, weight=None, destination=None, health=100):
-                self.inventory = []
-                self.location = location
-                Node.__init__(self, tags, description, weight, destination, health)

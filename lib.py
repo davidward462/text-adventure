@@ -54,8 +54,8 @@ def executeExamine(noun, player):
         else:
                 print(f"You don't see {noun} here.")
 
+
 def isLit(obj):
-        # if object emits light, of if its destination is lit, or if its location emits light.
         if obj.light or obj.destinatinIsLit() or obj.location.light:
                 return True
         else:
@@ -126,17 +126,25 @@ def getFromInventory(tag, player):
 
 
 def executeGet(noun, player):
-        obj = getObject(noun, player.location)
-        if obj:
-                if obj.weight != None:
-                        if obj.weight < 100:
-                                print(f"You pick up {obj.description}")
-                                player.inventory.append(obj)
-                                player.location.children.remove(obj)
+        # if the place we are trying to get from is lit
+        if isLit(player.location):
+                obj = getObject(noun, player.location)
+                if obj:
+                        if obj.weight != None:
+                                if obj.weight < 100:
+                                        print(f"You pick up {obj.description}")
+                                        # add the object to the player's inventory
+                                        player.inventory.append(obj)
+                                        # remove the object from where it was before
+                                        player.location.children.remove(obj)
+                                        # set the object's location to be at the player
+                                        obj.location = player
+                        else:
+                                print("That's not something you can get.")
                 else:
-                        print("That's not something you can get.")
+                        print(f"You don't see {noun} here.")
         else:
-                print(f"You don't see {noun} here.")
+                print("Its too dark to see.")
 
 def inventory(player):
         for child in player.inventory:
@@ -145,9 +153,12 @@ def inventory(player):
 def executeDrop(tag, player):
         obj = getFromInventory(tag, player)
         if obj:
-                # drop
+                # remove object from player's inventory
                 player.inventory.remove(obj)
+                # att the object as a child of the current location
                 player.location.children.append(obj)
+                # set the object's location to be where it is dropped
+                obj.location = player.location
                 print(f"You drop {obj.description}")
         else:
                 print("You aren't carrying that.")

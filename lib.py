@@ -55,6 +55,7 @@ def executeExamine(noun, player):
                 print(f"You don't see {noun} here.")
 
 def isLit(obj):
+        # if object emits light, of if its destination is lit, or if its location emits light.
         if obj.light or obj.destinatinIsLit() or obj.location.light:
                 return True
         else:

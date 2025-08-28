@@ -46,9 +46,9 @@ def executeGo(noun, player):
         else:
                 print(f"That place doesn't exist here.")
 
-
-def executeExamine(noun, player):
-        obj = getObject(noun, player.location)
+# Examine the given noun at the location provided
+def executeExamine(noun, location):
+        obj = getObject(noun, location)
         if obj:
                 print(f"There is {obj.description} here.")
         else:
@@ -186,7 +186,7 @@ def parseInput(text, player):
                         executeLook(noun, player)
                 case "examine":
                         # examine something closely without interacting with it
-                        executeExamine(noun, player)
+                        executeExamine(noun, player.location)
                 case "get":
                         # get a local item and put it in the player's inventory
                         executeGet(noun, player)

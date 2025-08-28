@@ -174,6 +174,27 @@ def parseInput(text, player):
         if len(words) > 1:
                 noun = words[1]
 
+        '''
+        Commands in the game:
+        quit
+        go
+        look
+        examine
+        get
+        drop
+        inventory
+        help
+
+        talk (to A about B)
+        put A in B
+        eat
+        wield
+        unwield
+        open?
+        close?
+        use?
+        '''
+        
         match verb:
                 case "quit":
                         # quit the game

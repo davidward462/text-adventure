@@ -163,62 +163,84 @@ def executeDrop(tag, player):
         else:
                 print("You aren't carrying that.")
 
-def printHelp():
-        print("Commands:\nquit\nlook <noun>\ngo <noun>\nexamine <noun>\nget <noun>\ndrop <noun>\ninventory")
+def executeHelp():
+        print("Commands:\nquit\nquit game\nlook\nlook around\nlook A\nlook at A\nlook inventory\nget A\nget A from B\nexamine A\ngo A\ngo to A\ngive A\ngive A to B\ndrop A\nask A\nask A from B\nopen A\nclose A\nlock A\nunlock A\ninventory\nhit A\nwield A\nunwield A\neat A\ntalk A\ntalk A about B\nwear A\ntake off A\nattack A\nattack A with B\nwait\n")
 
 def parseInput(text, player):
+
+        # Split input into a list, and match the different cases for the commands.
+        # TODO: Patterns are only matched exactly. A command like "help me" would cause the default case to execute.
         words = text.split()
-        verb = words[0]
-        # TODO: handle player entering only one word
-        noun = None
-        if len(words) > 1:
-                noun = words[1]
-
-        '''
-        Commands in the game:
-        quit
-        go
-        look
-        examine
-        get
-        drop
-        inventory
-        help
-
-        talk (to A about B)
-        put A in B
-        eat
-        wield
-        unwield
-        open?
-        close?
-        use?
-        '''
-        
-        match verb:
-                case "quit":
-                        # quit the game
+        match words:
+                case ["quit"]:
                         return False
-                case "go":
-                        # move in the specified direction
-                        executeGo(noun, player)
-                case "look":
-                        # look at the noun, or in the direction of the noun
-                        executeLook(noun, player)
-                case "examine":
-                        # examine something closely without interacting with it
-                        executeExamine(noun, player.location)
-                case "get":
-                        # get a local item and put it in the player's inventory
-                        executeGet(noun, player)
-                case "drop":
-                        # drop an item from the inventory at the current location
-                        executeDrop(noun, player)
-                case "inventory":
-                        # show the player's inventory
+                case ["quit", "game"]:
+                        return False
+                case ["help"]:
+                        executeHelp()
+                case ["look"]:
+                        executeLook("around", player)
+                case ["look", "around"]:
+                        executeLook("around", player)
+                case ["look", A]:
+                        executeLook(A, player)
+                case ["look", "at", A]:
+                        executeLook(A, player)
+                case ["look", "inventory"]:
                         inventory(player)
-                case "help":
-                        printHelp()
+                case ["get", A]:
+                        executeGet(A, player)
+                case ["get", A, "from", B]:
+                        print(f"You can't get {A} from {B} right now.")
+                case ["examine", A]:
+                        executeExamine(A, player.location)
+                case ["go", A]:
+                        executeGo(A, player)
+                case ["go", "to", A]:
+                        executeGo(A, player)
+                case ["give", A]:
+                        print(f"You can't give {A} right now.")
+                case ["give", A, "to", B]:
+                        print(f"You can't give {A} to {B} right now.")
+                case ["drop", A]:
+                        executeDrop(A, player)
+                case ["ask", A]:
+                        print(f"You can't ask {A} right now.")
+                case ["ask", A, "for", B]:
+                        print(f"You can't ask {A} for {B} right now.")
+                case ["open", A]:
+                        print(f"You can't open {A} right now.")
+                case ["close", A]:
+                        print(f"You can't close {A} right now.")
+                case ["lock", A]:
+                        print(f"You can't lock {A} right now.")
+                case ["unlock", A]:
+                        print(f"You can't unlock {A} right now.")
+                case ["inventory", A]:
+                        inventory(player)
+                case ["hit", A]:
+                        print(f"You can't hit {A} right now.")
+                case ["wield", A]:
+                        print(f"You can't wield {A} right now.")
+                case ["unwield", A]:
+                        print(f"You can't unwield {A} right now.")
+                case ["eat", A]:
+                        print(f"You can't eat {A} right now.")
+                case ["talk", A]:
+                        print(f"You can't talk to {A} right now.")
+                case ["talk", A, "about", B]:
+                        print(f"You can't talk to {A} about {B} right now.")
+                case ["wear", A]:
+                        print(f"You can't wear {A} right now.")
+                case ["remove", A]:
+                        print(f"You can't remove {A} right now.")
+                case ["attack", A]:
+                        print(f"You can't attack {A} right now.")
+                case ["attack", A, "with", B]:
+                        print(f"You can't attack {A} with {B} right now.")
+                case ["wait"]:
+                        print("You wait.")
                 case _:
-                        print(f"You don't know how to '{verb}'")
+                        print("I don't know how to do that.")
         return True
+

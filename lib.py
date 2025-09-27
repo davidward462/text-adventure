@@ -146,6 +146,18 @@ def executeGet(noun, player):
         else:
                 print("Its too dark to see.")
 
+def executeTalk(player, noun):
+        obj = getObject(noun, player.location)
+        if obj:
+                if obj.response:
+                        # if there is a response
+                        print(f"{obj.description} says: \"{obj.response}\"")
+                else:
+                        print("It doesn't say anything.")
+        else:
+                print(f"You don't see {noun} here.")
+                
+
 def inventory(player):
         for child in player.inventory:
                 print(f"{child.description}")
@@ -227,7 +239,8 @@ def parseInput(text, player):
                 case ["eat", A]:
                         print(f"You can't eat {A} right now.")
                 case ["talk", A]:
-                        print(f"You can't talk to {A} right now.")
+                        executeTalk(player, A)
+                        #print(f"You can't talk to {A} right now.")
                 case ["talk", A, "about", B]:
                         print(f"You can't talk to {A} about {B} right now.")
                 case ["wear", A]:

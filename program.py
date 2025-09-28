@@ -17,7 +17,13 @@ flowerField.makeEnterable()
 cobblestoneRoadToFlowers = Node(["road"], "a cobblestone road", destination=flowerField, goText="You walk down the road.")
 cobblestoneRoadToField = Node(["road"], "a cobblestone road", destination=field, goText="You walk down the road.")
 copperCoin = Node(["coin", "copper"], "a copper coin", weight=1)
-gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, response="Hello!")
+gnomeResponses = {
+        "coin":"Worth something, I think.",
+        "house":"It's not me who lives there!",
+        "field":"It's nice here.",
+        "door":"Looks fine to me."
+}
+gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, genericResponse="Hmmm.", responses=gnomeResponses)
 
 root.addChildren([field, basement, flowerField])
 field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, gnome0])

@@ -149,13 +149,33 @@ def executeGet(noun, player):
 def executeTalk(player, noun):
         obj = getObject(noun, player.location)
         if obj:
-                if obj.response:
+                if obj.genericResponse:
                         # if there is a response
-                        print(f"{obj.description} says: \"{obj.response}\"")
+                        print(f"{obj.description} says: \"{obj.genericResponse}\"")
                 else:
                         print("It doesn't say anything.")
         else:
                 print(f"You don't see {noun} here.")
+
+def executeTalkAbout(player, noun, topic):
+        entity = getObject(noun, player.location)
+        response = ""
+        if entity:
+                # if the entity exists here
+                if entity.responses:
+                        # if it can talk
+                        if topic in entity.responses:
+                                # if it has something to say about the topic
+                                response = entity.responses[topic]
+                        else:
+                                # generic response
+                                response = entity.genericResponse
+                        print(f"{entity.description} says: \"{response}\"")
+                else:
+                       print("It doesn't say anything.")
+        else:
+                print(f"You don't see {noun} here.")
+
                 
 
 def inventory(player):
@@ -242,7 +262,8 @@ def parseInput(text, player):
                         executeTalk(player, A)
                         #print(f"You can't talk to {A} right now.")
                 case ["talk", A, "about", B]:
-                        print(f"You can't talk to {A} about {B} right now.")
+                        executeTalkAbout(player, A, B)
+                        #print(f"You can't talk to {A} about {B} right now.")
                 case ["wear", A]:
                         print(f"You can't wear {A} right now.")
                 case ["remove", A]:

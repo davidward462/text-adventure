@@ -14,7 +14,7 @@
 # 'light' indicates if an object is glowing or is otherwise lit by it's own nature (like natural light). By default things are not lit.
 # 'response is data for entities when the player talks to them. None means the player cannot talk to this node (like a rock). An entity may have a single string as a generic response to all conversation (like a cat who always says "meow"), or a separate data structure may be used (TODO: set this up. Maybe a dict) to hold answers about certain words.
 class Node():
-        def __init__(self, tags, description, location=None, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False, response=None):
+        def __init__(self, tags, description, location=None, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False, responses=None, genericResponse=None):
                 self.children = []
                 self.inventory = []
                 self.tags = tags
@@ -29,7 +29,8 @@ class Node():
                 self.closed = closed
                 self.key = key
                 self.light = light
-                self.response = response
+                self.responses = responses
+                self.genericResponse = genericResponse
 
         def addChild(self, childNode):
                 childNode.location = self

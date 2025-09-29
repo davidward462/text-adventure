@@ -26,10 +26,15 @@ gnomeResponses = {
 }
 gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, expression="Oh, hello.", responses=gnomeResponses)
 
+ghostResponses = {
+        "default":"..."
+}
+ghost = Node(['ghost'], "a sad ghost", weight=0, health=1000, expression="sigh...", responses=ghostResponses)
+
 root.addChildren([field, basement, flowerField])
 field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, gnome0])
 flowerField.addChildren([cobblestoneRoadToField])
-house.addChildren([door, staircaseDown, copperCoin])
+house.addChildren([door, staircaseDown, copperCoin, ghost])
 basement.addChildren([staircaseUp, oldBook])
 
 

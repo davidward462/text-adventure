@@ -27,6 +27,8 @@ gnomeResponses = {
 gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, expression="Oh, hello.", responses=gnomeResponses)
 
 ghostResponses = {
+        "coin":"all is moth-eaten..."
+        "book":"I can't remember..."
         "default":"..."
 }
 ghost = Node(['ghost'], "a sad ghost", weight=0, health=1000, expression="sigh...", responses=ghostResponses)

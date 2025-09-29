@@ -21,9 +21,10 @@ gnomeResponses = {
         "coin":"Worth something, I think.",
         "house":"It's not me who lives there!",
         "field":"It's nice here.",
-        "door":"Looks fine to me."
+        "door":"Looks fine to me.",
+        "default":"I'm not familiar with that."
 }
-gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, genericResponse="Hmmm.", responses=gnomeResponses)
+gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, expression="Oh, hello.", responses=gnomeResponses)
 
 root.addChildren([field, basement, flowerField])
 field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, gnome0])

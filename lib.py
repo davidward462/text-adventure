@@ -163,35 +163,13 @@ def executeGet(noun, player):
                 print("Its too dark to see.")
 
 def executeTalk(player, noun):
-        obj = getObject(noun, player.location)
-        if obj:
-                if obj.genericResponse:
-                        # if there is a response
-                        print(f"{obj.description} says: \"{obj.genericResponse}\"")
-                else:
-                        print("It doesn't say anything.")
-        else:
-                print(f"You don't see {noun} here.")
+        entity = getObject(noun, player.location)
+        entity.talk()
+
 
 def executeTalkAbout(player, noun, topic):
         entity = getObject(noun, player.location)
-        response = ""
-        if entity:
-                # if the entity exists here
-                if entity.responses:
-                        # if it can talk
-                        if topic in entity.responses:
-                                # if it has something to say about the topic
-                                response = entity.responses[topic]
-                        else:
-                                # generic response
-                                response = entity.genericResponse
-                        print(f"{entity.description} says: \"{response}\"")
-                else:
-                       print("It doesn't say anything.")
-        else:
-                print(f"You don't see {noun} here.")
-
+        entity.talkAbout(topic)
                 
 
 def inventory(player):

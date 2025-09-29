@@ -12,9 +12,11 @@
 # 'closed' means a passage is locked, blocked, or otherwise not passable at this time.
 # 'key' is a pointer to the specific object that the player needs in order to open a passage (it does not need to be called a key)
 # 'light' indicates if an object is glowing or is otherwise lit by it's own nature (like natural light). By default things are not lit.
-# 'response is data for entities when the player talks to them. None means the player cannot talk to this node (like a rock). An entity may have a single string as a generic response to all conversation (like a cat who always says "meow"), or a separate data structure may be used (TODO: set this up. Maybe a dict) to hold answers about certain words.
+# 'responses' is a dictionary of (topic: response) pairs.
+# 'genericResponse' is a string that is the response to a topic which is not in the 'responses' data.
+# 'expression' is a string that is the response to the 'talk A' command. (with no topic)
 class Node():
-        def __init__(self, tags, description, location=None, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False, responses=None, genericResponse=None):
+        def __init__(self, tags, description, location=None, details="You see nothing special.", weight=None, destination=None, prospect=None, health=None, goText=None, closed=False, key=None, light=False, responses=None, expression=None):
                 self.children = []
                 self.inventory = []
                 self.tags = tags
@@ -30,7 +32,7 @@ class Node():
                 self.key = key
                 self.light = light
                 self.responses = responses
-                self.genericResponse = genericResponse
+                self.expression = expression
 
         def addChild(self, childNode):
                 childNode.location = self
@@ -58,3 +60,26 @@ class Node():
                         if self.destination.light:
                                 return True
                 return False
+
+        # An entity can talk if it has at least an expression to say.
+        def canTalk(self):
+                if self.expression:
+                        return True
+                else:
+                        return False
+
+        def talk(self):
+                if self.canTalk():
+                        print(f"{self.description} says: '{self.expression}'")
+                else:
+                        print("It doesn't say anything")
+
+        def talkAbout(self, topic):
+                if self.canTalk():
+                        if topic in self.responses:
+                                # if there is a response
+                                print(f"{self.description} says: '{self.responses[topic]}'")
+                        else:
+                                print(f"{self.description} says: '{self.responses["default"]}'")
+                else:
+                     print("It doesn't say anything")   

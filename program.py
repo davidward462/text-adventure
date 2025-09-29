@@ -44,7 +44,7 @@ running = True
 userName = input("Enter your name: ")
 player.description = userName
 
-lib.executeLook("around", player)
+lib.lookAround(player)
 while running:
         text = input("\n-> ")
         running = lib.parseInput(text, player)

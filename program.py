@@ -6,7 +6,7 @@ brassKey = Node(["key"], "a brass key", weight=0)
 house = Node(["house"], "a small wooden house", goText="You enter the house.", key=brassKey, closed=True, light=True)
 house.makeEnterable()
 field = Node(["field"], "a grassy field", light=True)
-player = Node(["player"], "a hero", health=100)
+player = Node(["player"], "", health=100)
 door = Node(["door"], "a wooden door", destination=field, goText="You go through the door.")
 basement = Node(["basement"], "a dusty basement")
 staircaseDown = Node(["stairs", "staircase", "down", "basement"], "a staircase leading down to the basement", destination=basement, goText="You descend the stairs.")
@@ -27,8 +27,8 @@ gnomeResponses = {
 gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, expression="Oh, hello.", responses=gnomeResponses)
 
 ghostResponses = {
-        "coin":"all is moth-eaten..."
-        "book":"I can't remember..."
+        "coin":"all is moth-eaten...",
+        "book":"I can't remember...",
         "default":"..."
 }
 ghost = Node(['ghost'], "a sad ghost", weight=0, health=1000, expression="sigh...", responses=ghostResponses)
@@ -39,11 +39,12 @@ flowerField.addChildren([cobblestoneRoadToField])
 house.addChildren([door, staircaseDown, copperCoin, ghost])
 basement.addChildren([staircaseUp, oldBook])
 
-
-lib.executeLook("around", player)
-
 # main loop
 running = True
+userName = input("Enter your name: ")
+player.description = userName
+
+lib.executeLook("around", player)
 while running:
         text = input("\n-> ")
         running = lib.parseInput(text, player)

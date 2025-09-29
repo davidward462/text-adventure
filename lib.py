@@ -1,14 +1,30 @@
-
 # return the object specified by the tags, in the node. Return None if it is not found.
+# TODO: Handle the case where multiple children have matching tags.
 def getObject(tag, node):
         children = node.children
         obj = None
+        objList = []
         # check each child of the node
         for child in children:
                 # if one of the tags in the list matches
                 if tag in child.tags:
                         obj = child
+                        objList.append(child)
+        for o in objList:
+                print(f"\t{o.description}")
         return obj
+
+# TODO: Write the below functions.
+
+# Check the children of the given node. If a node with one of the tags is there, return that node.
+# Otherwise return None if it is not found
+def getChild(tag, node):
+        pass
+
+# Check all the descendants of the given node (traverse the tree). Return the first node where 'tag' matches at least one of
+# its tags. Return None if nothing is found.
+def getDescendant(tag, node):
+        pass
 
 def go(passage, player):
         player.location.children.remove(player)

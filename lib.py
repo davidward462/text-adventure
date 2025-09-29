@@ -63,13 +63,6 @@ def executeGo(noun, player):
         else:
                 print(f"That place doesn't exist here.")
 
-# Examine the given noun at the location provided
-def executeExamine(noun, location):
-        obj = getObject(noun, location)
-        if obj:
-                print(f"There is {obj.description} here.")
-        else:
-                print(f"You don't see {noun} here.")
 
 
 def isLit(obj):
@@ -113,6 +106,7 @@ def listObjectsAtPlayer(player):
                                 if isNoticible(child, player):
                                         print(f"{child.description}")
 
+# Give a description of the area and things around the player
 def lookAround(player):
         location = player.location
         if isLit(location):
@@ -124,11 +118,19 @@ def lookAround(player):
         listObjectsAtPlayer(player)
 
 def executeLook(noun, player):
-        match noun:
-                case "around":
-                        lookAround(player)
-                case _:
-                        print(f"You can't do that.")
+        obj = getObject(noun, player.location)
+        if obj:
+                print(f"There is {obj.description} here.")
+        else:
+                print(f"You don't see '{noun}' here.")
+
+# Examine the given noun at the location provided
+def executeExamine(noun, location):
+        obj = getObject(noun, location)
+        if obj:
+                print(f"{obj.details}")
+        else:
+                print(f"You don't see '{noun}' here.")
 
 # Get an item from the inventory with a matching tag
 def getFromInventory(tag, player):

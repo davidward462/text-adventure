@@ -254,10 +254,8 @@ def parseInput(text, player):
                         print(f"You can't eat {A} right now.")
                 case ["talk", A]:
                         executeTalk(player, A)
-                        #print(f"You can't talk to {A} right now.")
                 case ["talk", A, "about", B]:
                         executeTalkAbout(player, A, B)
-                        #print(f"You can't talk to {A} about {B} right now.")
                 case ["wear", A]:
                         print(f"You can't wear {A} right now.")
                 case ["remove", A]:

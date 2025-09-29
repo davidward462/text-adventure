@@ -31,7 +31,8 @@ def go(passage, player):
         player.location = passage.destination
         passage.destination.addChild(player)
         print(f"{passage.goText}")
-        executeLook("around", player)
+        lookAround(player)
+        # executeLook("around", player)
 
 
 def executeGo(noun, player):
@@ -112,7 +113,7 @@ def listObjectsAtPlayer(player):
                                 if isNoticible(child, player):
                                         print(f"{child.description}")
 
-def lookAround(noun, player):
+def lookAround(player):
         location = player.location
         if isLit(location):
                 descr = location.description
@@ -125,7 +126,7 @@ def lookAround(noun, player):
 def executeLook(noun, player):
         match noun:
                 case "around":
-                        lookAround(noun, player)
+                        lookAround(player)
                 case _:
                         print(f"You can't do that.")
 
@@ -170,7 +171,6 @@ def executeTalk(player, noun):
 def executeTalkAbout(player, noun, topic):
         entity = getObject(noun, player.location)
         entity.talkAbout(topic)
-                
 
 def inventory(player):
         for child in player.inventory:
@@ -205,9 +205,11 @@ def parseInput(text, player):
                 case ["help"]:
                         executeHelp()
                 case ["look"]:
-                        executeLook("around", player)
+                        # executeLook("around", player)
+                        lookAround(player)
                 case ["look", "around"]:
-                        executeLook("around", player)
+                        # executeLook("around", player)
+                        lookAround(player)
                 case ["look", A]:
                         executeLook(A, player)
                 case ["look", "at", A]:

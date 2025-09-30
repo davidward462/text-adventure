@@ -210,6 +210,53 @@ def parse(text):
         rest = words[1::]
         print(f"first: {first}\nrest: {rest}")
 
+        match first:
+                case ["quit"]:
+                        return False
+                case ["help"]:
+                        pass
+                case ["look"]:
+                        pass
+                case ["get"]:
+                        pass
+                case ["examine"]:
+                        pass
+                case ["wait"]:
+                        pass
+                case ["go"]:
+                        pass
+                case ["drop"]:
+                        pass
+                case ["talk"]:
+                        pass
+                case ["give"]:
+                        pass
+                case ["ask"]:
+                        pass
+                case ["eat"]:
+                        pass
+                case ["lock"]:
+                        pass
+                case ["unlock"]:
+                        pass
+                case ["inventory"]:
+                        pass
+                case ["hit"]:
+                        pass
+                case ["wield"]:
+                        pass
+                case ["unwield"]:
+                        pass
+                case ["open"]:
+                        pass
+                case ["close"]:
+                        pass
+                case ["wear"]:
+                        pass
+                case ["remove"]:
+                        pass
+                case ["attack"]:
+                        pass
 
 def parseInput(text, player):
 

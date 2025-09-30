@@ -194,11 +194,31 @@ def executeDrop(tag, player):
 def executeHelp():
         print("Commands:\nquit\nquit game\nlook\nlook around\nlook A\nlook at A\nlook inventory\nget A\nget A from B\nexamine A\ngo A\ngo to A\ngive A\ngive A to B\ndrop A\nask A\nask A from B\nopen A\nclose A\nlock A\nunlock A\ninventory\nhit A\nwield A\nunwield A\neat A\ntalk A\ntalk A about B\nwear A\ntake off A\nattack A\nattack A with B\nwait\n")
 
+
+# New parse function.
+# TODO: Figure out a way to parse and execute multiword commands, empty commands, etc.
+def parse(text):
+        # Split the text into a list of strings.
+        words = []
+        words = text.split()
+        print(f"words: {words}")
+
+        first = ""
+        rest = ""
+
+        first = words[0]
+        rest = words[1::]
+        print(f"first: {first}\nrest: {rest}")
+
+
 def parseInput(text, player):
+
+        parse(text)
 
         # Split input into a list, and match the different cases for the commands.
         # TODO: Patterns are only matched exactly. A command like "help me" would cause the default case to execute.
         words = text.split()
+        #print(f"words: {words}")
         match words:
                 case ["quit"]:
                         return False

@@ -219,6 +219,7 @@ def parseInput(text, player):
                 case ["look", "inventory"]:
                         inventory(player)
                 case ["get", A]:
+                        print(f"executeGet({A})")
                         executeGet(A, player)
                 case ["get", A, "from", B]:
                         print(f"You can't get {A} from {B} right now.")
@@ -271,6 +272,7 @@ def parseInput(text, player):
                 case ["wait"]:
                         print("You wait.")
                 case _:
+                        print(f"{words}")
                         print("I don't know how to do that.")
         return True
 

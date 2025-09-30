@@ -20,24 +20,25 @@ copperCoin = Node(["coin", "copper"], "a copper coin", weight=1)
 goldCoin = Node(["coin", "gold"], "a gold coin", weight=1)
 gnomeResponses = {
         "coin":"Worth something, I think.",
-        "house":"It's not me who lives there!",
-        "field":"It's nice here.",
-        "door":"Looks fine to me.",
+        "house":"Nice place, isn't it.",
+        "field":"Not much to see, really.",
+        "door":"Sturdy.",
+        "key":"That's mine! But you can have it."
         "default":"I'm not familiar with that."
 }
 gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, expression="Oh, hello.", responses=gnomeResponses)
 
 ghostResponses = {
-        "coin":"all is moth-eaten...",
+        "coin":"I have no use for gold...",
         "book":"I can't remember...",
         "default":"..."
 }
 ghost = Node(['ghost'], "a sad ghost", weight=0, health=1000, expression="sigh...", responses=ghostResponses)
 
 root.addChildren([field, basement, flowerField])
-field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, gnome0])
+field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, copperCoin, goldCoin])
 flowerField.addChildren([cobblestoneRoadToField])
-house.addChildren([door, staircaseDown, copperCoin, ghost, goldCoin])
+house.addChildren([door, staircaseDown, ghost, gnome0])
 basement.addChildren([staircaseUp, oldBook])
 
 # main loop

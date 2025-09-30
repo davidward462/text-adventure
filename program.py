@@ -23,7 +23,7 @@ gnomeResponses = {
         "house":"Nice place, isn't it.",
         "field":"Not much to see, really.",
         "door":"Sturdy.",
-        "key":"That's mine! But you can have it."
+        "key":"That's mine! But you can have it.",
         "default":"I'm not familiar with that."
 }
 gnome0 = Node(['gnome'], "a little gnome", weight=10, health=1, expression="Oh, hello.", responses=gnomeResponses)

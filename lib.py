@@ -194,29 +194,44 @@ def executeDrop(tag, player):
 def executeHelp():
         print("Commands:\nquit\nquit game\nlook\nlook around\nlook A\nlook at A\nlook inventory\nget A\nget A from B\nexamine A\ngo A\ngo to A\ngive A\ngive A to B\ndrop A\nask A\nask A from B\nopen A\nclose A\nlock A\nunlock A\ninventory\nhit A\nwield A\nunwield A\neat A\ntalk A\ntalk A about B\nwear A\ntake off A\nattack A\nattack A with B\nwait\n")
 
+def look(rest, player):
+        # []
+        # ['around']
+        # ['noun']
+        if not rest:
+                # []
+                lookAround(player)
+        else:
+                # there are some other words
+                if rest[0] == "around":
+                        lookAround(player)
+                else:
+                        # look at an object given some tags
+                        executeLook(rest, player)
 
 # New parse function.
 # TODO: Figure out a way to parse and execute multiword commands, empty commands, etc.
-def parse(text):
+def parse(text,player):
         # Split the text into a list of strings.
         words = []
         words = text.split()
-        print(f"words: {words}")
+        #print(f"words: {words}")
 
         first = ""
         rest = ""
 
         first = words[0]
         rest = words[1::]
-        print(f"first: {first}\nrest: {rest}")
+        #print(f"first: {first}\nrest: {rest}")
 
         match first:
-                case ["quit"]:
+                case "quit":
                         return False
-                case ["help"]:
-                        pass
-                case ["look"]:
-                        pass
+                case "help":
+                        executeHelp()
+                case "look":
+                        print("case: look")
+                        look(rest, player)
                 case ["get"]:
                         pass
                 case ["examine"]:
@@ -257,10 +272,11 @@ def parse(text):
                         pass
                 case ["attack"]:
                         pass
+        return True
 
 def parseInput(text, player):
 
-        parse(text)
+        #parse(text)
 
         # Split input into a list, and match the different cases for the commands.
         # TODO: Patterns are only matched exactly. A command like "help me" would cause the default case to execute.
@@ -342,4 +358,3 @@ def parseInput(text, player):
                         print(f"{words}")
                         print("I don't know how to do that.")
         return True
-

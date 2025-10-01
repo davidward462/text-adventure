@@ -51,7 +51,7 @@ def lookAround(player):
 # If there are more than 1 matching items, or none, tell this to the player.
 def executeLook(tags, player):
         #obj = getObject(tags, player.location)
-        objects = lib.getChild(tags, player.location)
+        objects = lib.getChildren(tags, player.location)
 
         if not objects:
                 # TODO: make this print better

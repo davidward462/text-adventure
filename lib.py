@@ -16,18 +16,28 @@ def getObject(tag, node):
 
 # TODO: Write the below functions.
 
-# Check the children of the given node. If a node with one of the tags is there, return that node.
-# Otherwise return None if it is not found
-def getChild(tags, node):
+# Return a list of children of the current node where 'tags' is a subset of the child's tags.
+# Return None if nothing is found.
+def getChildren(tags, node):
         print(f"tags: {tags}")
         children = node.children
+        objects = []
         obj = None
+
+        # check each child
         for child in children:
                 tagsMatch = set(tags).issubset(set(child.tags))
+
+                # if the given tags are a subset of the child's tags (or equal)
                 if tagsMatch:
                         obj = child
-                        return obj
-        return obj
+                        objects.append(child)
+
+        # if no objects were found with matching tags, return None
+        if not objects:
+                return None
+        else:
+                return objects
 
 # Check all the descendants of the given node (traverse the tree). Return the first node where 'tag' matches at least one of
 # its tags. Return None if nothing is found.
@@ -129,11 +139,17 @@ def lookAround(player):
 # If there are more than 1 matching items, or none, tell this to the player.
 def executeLook(tags, player):
         #obj = getObject(tags, player.location)
-        obj = getChild(tags, player.location)
-        if obj:
-                print(f"There is {obj.description} here.")
-        else:
+        objects = getChild(tags, player.location)
+
+        if not objects:
+                # TODO: make this print better
                 print(f"You don't see '{tags}' here.")
+        elif len(objects) > 1:
+                print("Please be more specific about what you want to look at.")
+        else:
+                obj = objects[0]
+                print(f"There is {obj.description} here.")
+
 
 # Examine the given noun at the location provided
 def executeExamine(noun, location):

@@ -18,8 +18,16 @@ def getObject(tag, node):
 
 # Check the children of the given node. If a node with one of the tags is there, return that node.
 # Otherwise return None if it is not found
-def getChild(tag, node):
-        pass
+def getChild(tags, node):
+        print(f"tags: {tags}")
+        children = node.children
+        obj = None
+        for child in children:
+                tagsMatch = set(tags).issubset(set(child.tags))
+                if tagsMatch:
+                        obj = child
+                        return obj
+        return obj
 
 # Check all the descendants of the given node (traverse the tree). Return the first node where 'tag' matches at least one of
 # its tags. Return None if nothing is found.
@@ -117,12 +125,15 @@ def lookAround(player):
 
         listObjectsAtPlayer(player)
 
-def executeLook(noun, player):
-        obj = getObject(noun, player.location)
+# Given a list of tags of 1 or more, look at some item.
+# If there are more than 1 matching items, or none, tell this to the player.
+def executeLook(tags, player):
+        #obj = getObject(tags, player.location)
+        obj = getChild(tags, player.location)
         if obj:
                 print(f"There is {obj.description} here.")
         else:
-                print(f"You don't see '{noun}' here.")
+                print(f"You don't see '{tags}' here.")
 
 # Examine the given noun at the location provided
 def executeExamine(noun, location):

@@ -49,4 +49,4 @@ player.description = userName
 lib.lookAround(player)
 while running:
         text = input("\n-> ")
-        running = lib.parseInput(text, player)
+        running = lib.parse(text, player)

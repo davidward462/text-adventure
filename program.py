@@ -1,5 +1,6 @@
 from node import Node
 import lib
+import commands
 
 root = Node(["root"], "")
 brassKey = Node(["key"], "a brass key", weight=0)
@@ -46,7 +47,7 @@ running = True
 userName = input("Enter your name: ")
 player.description = userName
 
-lib.lookAround(player)
+commands.lookAround(player)
 while running:
         text = input("\n-> ")
-        running = lib.parse(text, player)
+        running = lib.parseInput(text, player)

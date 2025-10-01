@@ -302,9 +302,6 @@ def parse(text,player):
         return True
 
 def parseInput(text, player):
-
-        #parse(text)
-
         # Split input into a list, and match the different cases for the commands.
         # TODO: Patterns are only matched exactly. A command like "help me" would cause the default case to execute.
         words = text.split()

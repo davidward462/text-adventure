@@ -3,7 +3,7 @@ import lib
 import commands
 
 root = Node(["root"], "")
-brassKey = Node(["key"], "a brass key", weight=0)
+brassKey = Node(["key, brass"], "a brass key", weight=0)
 house = Node(["house, east"], "a small wooden house", goText="You enter the house.", key=brassKey, closed=True, light=True)
 house.makeEnterable()
 field = Node(["field"], "a grassy field", light=True)

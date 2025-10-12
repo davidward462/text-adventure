@@ -18,6 +18,10 @@ def getObject(tag, node):
 
 # TODO: Write the below functions.
 
+def printObjectList(objectList):
+        for obj in objectList:
+                print(obj)
+
 # Return a list of children of the current node where 'tags' is a subset of the child's tags.
 # Return None if nothing is found.
 def getChildren(tags, node):

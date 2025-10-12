@@ -34,6 +34,10 @@ class Node():
                 self.responses = responses
                 self.expression = expression
 
+        # Print object for debugging purposes.
+        def __repr__(self):
+                return f"<{self.description}>"
+
         def addChild(self, childNode):
                 childNode.location = self
                 self.children.append(childNode)

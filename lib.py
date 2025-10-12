@@ -27,6 +27,7 @@ def printObjectList(objectList):
 def getChildren(tags, node):
         print(f"tags: {tags}")
         children = node.children
+        printObjectList(children)
         objects = []
         obj = None
 

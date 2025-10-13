@@ -19,31 +19,38 @@ def getObject(tag, node):
 # TODO: Write the below functions.
 
 def printObjectList(objectList):
-        for obj in objectList:
-                print(obj)
+        if objectList:
+                for obj in objectList:
+                        print(obj)
+        else:
+                print("List is empty")
 
 # Return a list of children of the current node where 'tags' is a subset of the child's tags.
 # Return None if nothing is found.
 def getChildren(tags, node):
         print(f"tags: {tags}")
         children = node.children
-        printObjectList(children)
         objects = []
         obj = None
 
         # check each child
         for child in children:
+                # the child is a match if the tags to search for are a subset of the child's tags.
+                print(f"tags: {tags} ? child tags: {child.tags}")
                 tagsMatch = set(tags).issubset(set(child.tags))
+
 
                 # if the given tags are a subset of the child's tags (or equal)
                 if tagsMatch:
-                        obj = child
+                        # append child to the list of objects that match
                         objects.append(child)
 
-        # if no objects were found with matching tags, return None
         if not objects:
+                # if no objects were found with matching tags, return None
                 return None
         else:
+                # otherwise, return the list of found objects
+                printObjectList(objects)
                 return objects
 
 # Check all the descendants of the given node (traverse the tree). Return the first node where 'tag' matches at least one of
@@ -107,7 +114,7 @@ def parse(text,player):
 
         first = words[0]
         rest = words[1::]
-        #print(f"first: {first}\nrest: {rest}")
+        print(f"first: {first}\nrest: {rest}")
 
         match first:
                 case "quit":

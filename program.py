@@ -50,4 +50,4 @@ player.description = userName
 commands.lookAround(player)
 while running:
         text = input("\n-> ")
-        running = lib.parseInput(text, player)
+        running = lib.parse(text, player)

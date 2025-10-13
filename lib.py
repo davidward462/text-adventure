@@ -28,7 +28,7 @@ def printObjectList(objectList):
 # Return a list of children of the current node where 'tags' is a subset of the child's tags.
 # Return None if nothing is found.
 def getChildren(tags, node):
-        print(f"tags: {tags}")
+        #print(f"tags: {tags}")
         children = node.children
         objects = []
         obj = None
@@ -36,7 +36,7 @@ def getChildren(tags, node):
         # check each child
         for child in children:
                 # the child is a match if the tags to search for are a subset of the child's tags.
-                print(f"tags: {tags} ? child tags: {child.tags}")
+                #print(f"tags: {tags} ? child tags: {child.tags}")
                 tagsMatch = set(tags).issubset(set(child.tags))
 
 
@@ -50,7 +50,7 @@ def getChildren(tags, node):
                 return None
         else:
                 # otherwise, return the list of found objects
-                printObjectList(objects)
+                #printObjectList(objects)
                 return objects
 
 # Check all the descendants of the given node (traverse the tree). Return the first node where 'tag' matches at least one of
@@ -114,7 +114,7 @@ def parse(text,player):
 
         first = words[0]
         rest = words[1::]
-        print(f"first: {first}\nrest: {rest}")
+        #print(f"first: {first}\nrest: {rest}")
 
         match first:
                 case "quit":
@@ -122,7 +122,7 @@ def parse(text,player):
                 case "help":
                         commands.executeHelp()
                 case "look":
-                        print("case: look")
+                        #print("case: look")
                         commands.look(rest, player)
                 case ["get"]:
                         pass

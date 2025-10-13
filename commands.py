@@ -133,6 +133,10 @@ def executeDrop(tag, player):
 def executeHelp():
         print("Commands:\nquit\nquit game\nlook\nlook around\nlook A\nlook at A\nlook inventory\nget A\nget A from B\nexamine A\ngo A\ngo to A\ngive A\ngive A to B\ndrop A\nask A\nask A from B\nopen A\nclose A\nlock A\nunlock A\ninventory\nhit A\nwield A\nunwield A\neat A\ntalk A\ntalk A about B\nwear A\ntake off A\nattack A\nattack A with B\nwait\n")
 
+"""
+rest: The part of the command after the first keyword.
+player: The player object.
+"""
 def look(rest, player):
         # []
         # ['around']

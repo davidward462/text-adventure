@@ -25,8 +25,13 @@ def printObjectList(objectList):
         else:
                 print("List is empty")
 
-# Return a list of children of the current node where 'tags' is a subset of the child's tags.
-# Return None if nothing is found.
+'''
+Return a list of children of the current node where 'tags' is a subset of the child's tags.
+Return None if nothing is found.
+
+Tags: List of string tags to search for.
+Node: Node who's children we will search.
+'''
 def getChildren(tags, node):
         #print(f"tags: {tags}")
         children = node.children
@@ -114,7 +119,7 @@ def parse(text,player):
 
         first = words[0]
         rest = words[1::]
-        #print(f"first: {first}\nrest: {rest}")
+        print(f"first: {first}\nrest: {rest}")
 
         match first:
                 case "quit":
@@ -130,8 +135,9 @@ def parse(text,player):
                         pass
                 case ["wait"]:
                         pass
-                case ["go"]:
-                        pass
+                case "go":
+                        print("<go>")
+                        commands.executeGo(rest, player)
                 case ["drop"]:
                         pass
                 case ["talk"]:

@@ -129,15 +129,15 @@ def parse(text,player):
                 case "look":
                         #print("case: look")
                         commands.look(rest, player)
+                case "go":
+                        print("<go>")
+                        commands.executeGo(rest, player)
                 case ["get"]:
                         pass
                 case ["examine"]:
                         pass
                 case ["wait"]:
                         pass
-                case "go":
-                        print("<go>")
-                        commands.executeGo(rest, player)
                 case ["drop"]:
                         pass
                 case ["talk"]:

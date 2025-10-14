@@ -1,5 +1,11 @@
 import lib
 
+"""
+Move the player into to through the specified passage.
+
+passage: The location the player gets moved to.
+player: The player object.
+"""
 def go(passage, player):
         player.location.children.remove(player)
         player.location = passage.destination
@@ -8,8 +14,12 @@ def go(passage, player):
         lookAround(player)
         # executeLook("around", player)
 
-# TODO: Make this work with the new first-rest parser.
+"""
+Begin executing the 'go' command. Determine if the location exists and if the player can go there.
 
+tags: The list of tags specifying where the player wants to go.
+player: The player object.
+"""
 def executeGo(tags, player):
         print(f"go: {tags}")
         #obj = lib.getObject(tags, player.location)
@@ -44,7 +54,11 @@ def executeGo(tags, player):
                         print("You can't go there.")
 
 
-# Give a description of the area and things around the player
+"""
+Give a description of the area and things around the player
+
+player: The player object.
+"""
 def lookAround(player):
         location = player.location
         if lib.isLit(location):
@@ -55,8 +69,14 @@ def lookAround(player):
 
         lib.listObjectsAtPlayer(player)
 
-# Given a list of tags of 1 or more, look at some item.
-# If there are more than 1 matching items, or none, tell this to the player.
+
+"""
+Begin executing the 'look' command. Given a list of tags of 1 or more, look at some item.
+If there are more than 1 matching items, or none, tell this to the player.
+
+tags: The list of tags we are searching for.
+player: The player object.
+"""
 def executeLook(tags, player):
         #obj = getObject(tags, player.location)
         objects = lib.getChildren(tags, player.location)
@@ -71,7 +91,13 @@ def executeLook(tags, player):
                 print(f"There is {obj.description} here.")
 
 
-# Examine the given noun at the location provided
+"""
+Examine the given noun at the location provided
+
+noun: The tag to examine.
+location: The node in which to search for the noun.
+"""
+# TODO: Use getChildren() here.
 def executeExamine(noun, location):
         obj = lib.getObject(noun, location)
         if obj:

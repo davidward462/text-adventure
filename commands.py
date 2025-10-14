@@ -92,18 +92,23 @@ def executeLook(tags, player):
 
 
 """
-Examine the given noun at the location provided
+Examine the given tags at the location provided
 
-noun: The tag to examine.
-location: The node in which to search for the noun.
+tags: The list of tags to examine.
+location: The node in which to search for the tags.
 """
-# TODO: Use getChildren() here.
-def executeExamine(noun, location):
-        obj = lib.getObject(noun, location)
-        if obj:
-                print(f"{obj.details}")
+def executeExamine(tags, player):
+        #obj = lib.getObject(tags, location)
+        objectList = lib.getChildren(tags, player.location)
+
+        if not objectList:
+                # TODO: make this print better
+                print(f"You don't see '{tags}' here.")
+        elif len(objectList) > 1:
+                print("Please be more specific about what you want to examine.")
         else:
-                print(f"You don't see '{noun}' here.")
+                obj = objectList[0]
+                print(f"{obj.details}")
 
 # Get an item from the inventory with a matching tag
 def getFromInventory(tag, player):

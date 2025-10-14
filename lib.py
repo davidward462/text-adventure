@@ -134,7 +134,7 @@ def parse(text,player):
                         commands.executeGo(rest, player)
                 case ["get"]:
                         pass
-                case ["examine"]:
+                case "examine":
                         commands.executeExamine(rest, player)
                 case ["wait"]:
                         pass

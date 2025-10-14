@@ -21,7 +21,7 @@ tags: The list of tags specifying where the player wants to go.
 player: The player object.
 """
 def executeGo(tags, player):
-        print(f"go: {tags}")
+        #print(f"go: {tags}")
         #obj = lib.getObject(tags, player.location)
         objectList = lib.getChildren(tags, player.location)
 

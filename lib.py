@@ -119,7 +119,7 @@ def parse(text,player):
 
         first = words[0]
         rest = words[1::]
-        print(f"first: {first}\nrest: {rest}")
+        #print(f"first: {first}\nrest: {rest}")
 
         match first:
                 case "quit":
@@ -127,10 +127,8 @@ def parse(text,player):
                 case "help":
                         commands.executeHelp()
                 case "look":
-                        #print("case: look")
                         commands.look(rest, player)
                 case "go":
-                        print("<go>")
                         commands.executeGo(rest, player)
                 case ["get"]:
                         pass
@@ -171,7 +169,7 @@ def parse(text,player):
                 case ["attack"]:
                         pass
                 case _:
-                        print(f"{words}")
+                        #print(f"{words}")
                         print("I don't know how to do that.")
         return True
 

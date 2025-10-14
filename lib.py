@@ -170,6 +170,9 @@ def parse(text,player):
                         pass
                 case ["attack"]:
                         pass
+                case _:
+                        print(f"{words}")
+                        print("I don't know how to do that.")
         return True
 
 def parseInput(text, player):

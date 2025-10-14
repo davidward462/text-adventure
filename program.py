@@ -6,9 +6,12 @@ root = Node(["root"], "")
 brassKey = Node(["key", "brass"], "a brass key", weight=0)
 house = Node(["house", "small", "east"], "a small wooden house", goText="You enter the house.", key=brassKey, closed=True, light=True)
 house.makeEnterable()
+shed = Node(["shed", "broken-down"], "a broken-down shed", goText="You go inside the shed.", light=True)
+shed.makeEnterable()
 field = Node(["field"], "a grassy field", light=True)
 player = Node(["player"], "", health=100)
 door = Node(["door"], "a wooden door", destination=field, goText="You go through the door.")
+doorway = Node(["doorway", "door"], "a doorway", destination=field, goText="You go through the doorway.")
 basement = Node(["basement"], "a dusty basement")
 staircaseDown = Node(["stairs", "staircase", "down", "basement"], "a staircase leading down to the basement", destination=basement, goText="You descend the stairs.")
 staircaseUp = Node(["stairs", "staircase", "up"], "a staircase leading up", destination=house, goText="You ascend the stairs.")
@@ -37,10 +40,11 @@ ghostResponses = {
 ghost = Node(['ghost'], "a sad ghost", weight=0, health=1000, expression="sigh...", responses=ghostResponses)
 
 root.addChildren([field, basement, flowerField])
-field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, copperCoin, goldCoin])
+field.addChildren([house, cobblestoneRoadToFlowers, brassKey, player, copperCoin, goldCoin, shed])
 flowerField.addChildren([cobblestoneRoadToField])
 house.addChildren([door, staircaseDown, ghost, gnome0])
 basement.addChildren([staircaseUp, oldBook])
+shed.addChildren([doorway])
 
 # main loop
 running = True

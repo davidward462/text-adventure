@@ -8,11 +8,22 @@ def go(passage, player):
         lookAround(player)
         # executeLook("around", player)
 
-def executeGo(noun, player):
+# TODO: Make this work with the new first-rest parser.
 
-        obj = lib.getObject(noun, player.location)
-        # if the object is found
-        if obj:
+def executeGo(tags, player):
+        print(f"go: {tags}")
+        #obj = lib.getObject(tags, player.location)
+        objectList = lib.getChildren(tags, player.location)
+
+        # Handle multiple matching objects.
+        if not objectList:
+                # TODO: make this print better
+                print(f"You don't see '{tags}' here.")
+                print(f"That place doesn't exist here.")
+        elif len(objectList) > 1:
+                print("Please be more specific about where you want to go.")
+        else:
+                obj = objectList[0]
                 # if object has a destination, go there
                 if obj.destination:
                         # if the passage is closed
@@ -32,9 +43,6 @@ def executeGo(noun, player):
                 else:
                         print("You can't go there.")
 
-        # object was not found
-        else:
-                print(f"That place doesn't exist here.")
 
 # Give a description of the area and things around the player
 def lookAround(player):
